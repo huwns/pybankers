@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Main Page &#8212; Analyze Bankers 2021/1/6 ドキュメント</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css" />
+    
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/translations.js"></script>
+    
+    <link rel="index" title="索引" href="genindex.html" />
+    <link rel="search" title="検索" href="search.html" />
+    <link rel="prev" title="Welcome to Analyze Bankers&#39;s documentation!" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             accesskey="I">索引</a></li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Analyze Bankers&#39;s documentation!"
+             accesskey="P">前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Analyze Bankers 2021/1/6 ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Main Page</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="main-page">
+<span id="main"></span><h1>Main Page<a class="headerlink" href="#main-page" title="このヘッドラインへのパーマリンク">¶</a></h1>
+<p>ボードゲーム「バンカース」における各マスの止まりやすさを計算する。</p>
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">analyze_bankers_pep8.</span></span><span class="sig-name descname"><span class="pre">AnalyzeBankers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_count</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>各マスの止まりやすさを計算するクラス</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">analyze</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>1ターンで最終的にどこに止まったかを記録していくことで、止まりやすい家を算出する。</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">stepEval</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">steps</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>1ターンの最終到達点を計算する再帰関数</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>steps (int): 最終到達点までに進んだマス目の数
+count (int): 現在の総カウント
+card (Card): カードクラスのインスタンス</p>
+</dd>
+<dt>Returns:</dt><dd><p>int: 最終到達点までに進んだマス目の数</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">analyze_bankers_pep8.</span></span><span class="sig-name descname"><span class="pre">Card</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">card</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'normal'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>カードのデッキを表すクラス</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">drawCard</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>カードを引く</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">getMovement</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>カードによる移動数を出力するメソッド</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">moveBank</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>「銀行」へ行くカードの移動数を計算</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">moveChuou</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>「中央線」へ行くカードの移動数を計算</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">moveCorner</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>角に移動するカードによる移動数を計算</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">moveKoun</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>「幸運」へ行くカードによる移動数を計算</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">moveNextcard</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>「次のカード」へ行くカードによる移動数を計算</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">moveSairei</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>「祭礼」へ行くカードによる移動数を計算</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">moveTheatre</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>「劇場」へ行くカードによる移動数を計算</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">analyze_bankers_pep8.</span></span><span class="sig-name descname"><span class="pre">Tile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'銀行'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">move_type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'normal'</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>バンカースのマスを表すクラス</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">getMove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">card</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>移動に関わる特殊マスでの移動数を計算するメソッド</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>card (Card): Cardクラス
+position (int): どのマス目にいるか</p>
+</dd>
+<dt>Returns:</dt><dd><p>int: 移動に関わる特殊マスでの移動数</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">analyze_bankers_pep8.</span></span><span class="sig-name descname"><span class="pre">dice</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>2つのサイコロの目の合計を出力する関数</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>int: 2つのサイコロの目の合計</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">analyze_bankers_pep8.</span></span><span class="sig-name descname"><span class="pre">where_board</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">count</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>総カウントから剰余算により現在いるマスを計算する。</p>
+</dd></dl>
+
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>前のトピックへ</h4>
+  <p class="topless"><a href="index.html"
+                        title="前の章へ">Welcome to Analyze Bankers's documentation!</a></p>
+  <div role="note" aria-label="source link">
+    <h3>このページ</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/main.rst.txt"
+            rel="nofollow">ソースコードを表示</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">クイック検索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="検索" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>ナビゲーション</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="総合索引"
+             >索引</a></li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Analyze Bankers&#39;s documentation!"
+             >前へ</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Analyze Bankers 2021/1/6 ドキュメント</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Main Page</a></li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2021, huwns.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 4.0.0.
+    </div>
+  </body>
+</html>

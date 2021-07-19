@@ -113,42 +113,43 @@ class Card:
 		else:
 			return 0
 
+class AnalyzeBankers:
 
-# 定数定義
-BOARD = [
-	Tile(), Tile('寺町'), Tile('カード', 'card'), Tile('京町'), Tile('本町通'), Tile(
-		'内海汽船', 'redice'),
-	Tile('都道'), Tile('明治通'), Tile('納税'), Tile('公開堂通'), Tile('中央通'), Tile(
-		'モーターボード', 'boat'), Tile('租税割戻'), Tile('栄町'), Tile('取引所通'), Tile(
-			'遊覧飛行機旅行', 'redice'), Tile('山手台'), Tile('カード', 'card'), Tile('築港', 'tikko'),
-	Tile('野球場'), Tile('祭礼', 'sairei'), Tile('幸運'), Tile('神宮通'), Tile(
-		'カード', 'card'), Tile('大手町'), Tile('中央線', 'redice'), Tile('国立劇場'),
-	Tile('扇町'), Tile('カード', 'card'), Tile('昭和通'), Tile('市場通'), Tile(
-		'列車に乗り遅れ', 'noriokure'), Tile('カード', 'card'), Tile('遺産相続'), Tile('元町通'), Tile(
-			'バス旅行', 'redice'), Tile('一番街'), Tile('カード', 'card'), Tile('銀座街'), Tile('日本橋')
-]
+	# 定数定義
+	BOARD = [
+		Tile(), Tile('寺町'), Tile('カード', 'card'), Tile('京町'), Tile('本町通'), Tile(
+			'内海汽船', 'redice'),
+		Tile('都道'), Tile('明治通'), Tile('納税'), Tile('公開堂通'), Tile('中央通'), Tile(
+			'モーターボード', 'boat'), Tile('租税割戻'), Tile('栄町'), Tile('取引所通'), Tile(
+				'遊覧飛行機旅行', 'redice'), Tile('山手台'), Tile('カード', 'card'), Tile('築港', 'tikko'),
+		Tile('野球場'), Tile('祭礼', 'sairei'), Tile('幸運'), Tile('神宮通'), Tile(
+			'カード', 'card'), Tile('大手町'), Tile('中央線', 'redice'), Tile('国立劇場'),
+		Tile('扇町'), Tile('カード', 'card'), Tile('昭和通'), Tile('市場通'), Tile(
+			'列車に乗り遅れ', 'noriokure'), Tile('カード', 'card'), Tile('遺産相続'), Tile('元町通'), Tile(
+				'バス旅行', 'redice'), Tile('一番街'), Tile('カード', 'card'), Tile('銀座街'), Tile('日本橋')
+	]
 
-panel_counter = [0 for i in range(40)]
-
-
-def where_board(count):
-	return count % len(BOARD)
+	panel_counter = [0 for i in range(40)]
 
 
-def dice():
-	return random.randint(1, 6) + random.randint(1, 6)
+	def where_board(count):
+		return count % len(BOARD)
 
 
-def stepEval(steps, count, card):
-	if (count + steps) % len(BOARD) == 18:
-		if steps == 7:
-			return steps
-	if steps == 0:
-		return 0
-	else:
-		count += steps
-		next_steps = BOARD[where_board(count)].getMove(card, where_board(count))
-		return steps + stepEval(next_steps, count, card)
+	def dice():
+		return random.randint(1, 6) + random.randint(1, 6)
+
+
+	def stepEval(steps, count, card):
+		if (count + steps) % len(BOARD) == 18:
+			if steps == 7:
+				return steps
+		if steps == 0:
+			return 0
+		else:
+			count += steps
+			next_steps = BOARD[where_board(count)].getMove(card, where_board(count))
+			return steps + stepEval(next_steps, count, card)
 
 
 # -- main ---

@@ -1,0 +1,20 @@
+Metadata-Version: 1.2
+Name: bankers
+Version: 0.0.1.dev1
+Summary: A library to analyze Bankers
+Home-page: http://pypi.python.org/pypi/bankers
+Author: huwns
+Author-email: huwns@gmail.com
+License: GPLv3+
+Description: # bankers
+        
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Console
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Information Technology
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Requires-Python: >=2.6
