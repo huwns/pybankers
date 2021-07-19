@@ -1,7 +1,8 @@
 
 import unittest
 
-from bankers.analyze_bankers_pep8 import Card
+from bankers import Card
+
 
 class TestCard(unittest.TestCase):
     def setUp(self):
