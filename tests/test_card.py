@@ -1,7 +1,7 @@
 
 import unittest
 
-from bankers import Card
+from analyze_bankers import Card
 
 
 class TestCard(unittest.TestCase):
@@ -11,6 +11,3 @@ class TestCard(unittest.TestCase):
     def test_move_bank(self):
         self.card.card = 'bank'
         self.assertEqual(self.card.getMovement(), 38)
-
-    
-

@@ -1,6 +1,6 @@
 import unittest
 
-from bankers import Tile
+from analyze_bankers import Tile
 
 
 class TestTile(unittest.TestCase):
@@ -12,5 +12,3 @@ class TestTile(unittest.TestCase):
             self.assertTrue(ans % 2 == 0)
         else:
             self.assertTrue(ans % 2 == 1)
-
-
