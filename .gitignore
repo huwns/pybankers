@@ -1,7 +1,0 @@
-__pycache__/
-.eggs/
-build/
-dist/
-foobar.egg-info/
-bankers.egg-info/
-doc/build/
