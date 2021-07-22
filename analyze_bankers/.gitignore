@@ -1,0 +1,5 @@
+__pycache__/
+.eggs/
+build/
+dist/
+foobar.egg-info/
