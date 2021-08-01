@@ -7,8 +7,6 @@ analyze_bankers is a analysis toolkit for the board game 'Bankers' written in Py
 
 Installation
 ------------
-bankers is available on PyPi and can be installed using pip
-
-.. code-block:: python
+bankers is available on PyPi and can be installed using pip::
 
     pip install analyze_bankers
