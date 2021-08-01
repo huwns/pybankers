@@ -3,6 +3,9 @@
 import random
 import matplotlib.pyplot as plt
 
+__all__ = ['AnalyzeBankers', 'Card', 'Tile']
+
+
 def dice():
     """2つのサイコロの目の合計を出力する関数
 
@@ -206,12 +209,8 @@ class AnalyzeBankers:
         return self.panel_counter
 
 
-def main():
-    import argparse
-    parser = argparse.ArgumentParser(description='Bankers Analysis Tool')
-    parser.add_argument('max_count', type=int, help='max steps count')
-    args = parser.parse_args(['10000'])
-    ab = AnalyzeBankers(args.max_count)
+def main(max_count):
+    ab = AnalyzeBankers(max_count)
     panel_counter = ab.analyze()
     print('Result:')
     for i in range(len_BOARD):
@@ -222,4 +221,4 @@ def main():
     plt.show()
 
 if __name__ == '__main__':
-    main()
+    main(1000)
