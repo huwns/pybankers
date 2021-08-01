@@ -8,7 +8,7 @@ analyze_bankers is a analysis toolkit for the board game 'Bankers' written in Py
 
 Installation
 ------------
-Download this repository and run the following command in the repository root:
+Download this repository and run the following command in the repository root::
 
     python setup.py install
 
