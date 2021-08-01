@@ -5,8 +5,14 @@ Introduction
 ------------
 analyze_bankers is a analysis toolkit for the board game 'Bankers' written in Python.
 
+
 Installation
 ------------
-bankers is available on PyPi and can be installed using pip:
+Download this repository and run the following command in the repository root:
 
-    pip install analyze_bankers
+    python setup.py install
+
+
+Documentation
+-------------
+The documentation can be found in the doc folder.
