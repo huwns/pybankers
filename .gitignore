@@ -5,3 +5,11 @@ dist/
 foobar.egg-info/
 bankers.egg-info/
 doc/build/
+.tox/
+/test-project/
+.coverage
+/doc/make.bat
+/doc/Makefile
+_static/
+_templates/
+htmlcov/
