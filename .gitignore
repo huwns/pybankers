@@ -2,8 +2,7 @@ __pycache__/
 .eggs/
 build/
 dist/
-foobar.egg-info/
-bankers.egg-info/
+*.egg-info/
 doc/build/
 .tox/
 /test-project/

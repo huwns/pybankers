@@ -1,6 +1,6 @@
-===============
-Analyze Bankers
-===============
+=========
+PyBankers
+=========
 
 .. image:: https://img.shields.io/pypi/v/pybankers.svg
     :target: https://pypi.org/project/pybankers/
@@ -17,12 +17,12 @@ Analyze Bankers
 
 Introduction
 ------------
-analyze_bankers is a analysis toolkit for the board game 'Bankers' written in Python.
+PyBankers is a analysis toolkit for the board game 'Bankers' written in Python.
 
 
 Installation
 ------------
-Download this repository and run the following command in the repository root::
+install by pip::
 
     python setup.py install
 

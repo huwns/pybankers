@@ -2,7 +2,7 @@
 
 import argparse
 
-from .analyze_bankers import main
+from .pybankers import main
 
 
 if __name__ == "__main__":
