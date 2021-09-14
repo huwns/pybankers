@@ -1,0 +1,9 @@
+digraph "packages_PyBankers" {
+rankdir=BT
+charset="utf-8"
+"pybankers" [color="black", label="pybankers", shape="box", style="solid"];
+"pybankers.__main__" [color="black", label="pybankers.__main__", shape="box", style="solid"];
+"pybankers.pybankers" [color="black", label="pybankers.pybankers", shape="box", style="solid"];
+"pybankers" -> "pybankers" [arrowhead="open", arrowtail="none"];
+"pybankers.__main__" -> "pybankers" [arrowhead="open", arrowtail="none"];
+}

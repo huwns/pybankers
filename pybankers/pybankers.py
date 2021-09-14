@@ -1,26 +1,27 @@
-"""ボードゲーム「バンカース」における各マスの止まりやすさを計算する。"""
+"""ボードゲーム「バンカース」における各マスの止まりやすさを計算する."""
 
 import random
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt  # type:ignore
+
+from typing import List, Dict
 
 __all__ = ["AnalyzeBankers", "Card", "Tile"]
 
 
-def dice():
-    """2つのサイコロの目の合計を出力する関数
+def dice() -> int:
+    """2つのサイコロの目の合計を出力する関数.
 
     Returns:
         int: 2つのサイコロの目の合計
     """
-
     return random.randint(1, 6) + random.randint(1, 6)
 
 
 class Card:
-    """カードのデッキを表すクラス"""
+    """カードのデッキを表すクラス."""
 
-    NORMAL_CARDS = ["normal" for i in range(11)]
-    MOVE_CARDS = [
+    NORMAL_CARDS: List[str] = ["normal" for i in range(11)]
+    MOVE_CARDS: List[str] = [
         "15",
         "next card",
         "next card",
@@ -31,30 +32,29 @@ class Card:
         "sairei",
         "koun",
     ]
-    CARDS = NORMAL_CARDS + MOVE_CARDS
-    CARD_POSITION = [2, 17, 23, 28, 32, 37]
-    CORNER_POSITION = [0, 11, 20, 31]
-    CHUOU_POSITION = 25
-    THEATRE_POSITION = 26
-    SAIREI_POSITION = 20
-    KOUN_POSITION = 21
+    CARDS: List[str] = NORMAL_CARDS + MOVE_CARDS
+    CARD_POSITION: List[int] = [2, 17, 23, 28, 32, 37]
+    CORNER_POSITION: List[int] = [0, 11, 20, 31]
+    CHUOU_POSITION: int = 25
+    THEATRE_POSITION: int = 26
+    SAIREI_POSITION: int = 20
+    KOUN_POSITION: int = 21
 
     # この初期値設定はどういうこと？
-    def __init__(self, card="normal", position=2):
-        self.cards = Card.CARDS.copy()
-        self.card = card
-        self.position = position
+    def __init__(self, card: str ="normal", position: int = 2) -> None:
+        """Init."""
+        self.cards: List[str] = Card.CARDS.copy()
+        self.card: str = card
+        self.position: int = position
 
-    def drawCard(self):
-        """カードを引く"""
-
+    def drawCard(self) -> None:
+        """カードを引く."""
         if len(self.cards) <= 0:
             self.cards = Card.CARDS.copy()
         self.card = self.cards.pop(random.randint(0, len(self.cards) - 1))
 
     def moveCorner(self):
-        """角に移動するカードによる移動数を計算"""
-
+        """角に移動するカードによる移動数を計算."""
         position = [self.position] + Card.CORNER_POSITION
         position.sort()
         corner = Card.CORNER_POSITION[
@@ -63,41 +63,34 @@ class Card:
         return -((self.position - corner) % len_BOARD)
 
     def moveBank(self):
-        """「銀行」へ行くカードの移動数を計算"""
-
+        """「銀行」へ行くカードの移動数を計算."""
         return -self.position % len_BOARD
 
     def moveChuou(self):
-        """「中央線」へ行くカードの移動数を計算"""
-
+        """「中央線」へ行くカードの移動数を計算."""
         return (Card.CHUOU_POSITION - self.position) % len_BOARD
 
     def moveTheatre(self):
-        """「劇場」へ行くカードによる移動数を計算"""
-
+        """「劇場」へ行くカードによる移動数を計算."""
         return (Card.THEATRE_POSITION - self.position) % len_BOARD
 
     def moveSairei(self):
-        """「祭礼」へ行くカードによる移動数を計算"""
-
+        """「祭礼」へ行くカードによる移動数を計算."""
         return (Card.SAIREI_POSITION - self.position) % len_BOARD
 
     def moveKoun(self):
-        """「幸運」へ行くカードによる移動数を計算"""
-
+        """「幸運」へ行くカードによる移動数を計算."""
         return (Card.KOUN_POSITION - self.position) % len_BOARD
 
     def moveNextcard(self):
-        """「次のカード」へ行くカードによる移動数を計算"""
-
+        """「次のカード」へ行くカードによる移動数を計算."""
         nextcard = Card.CARD_POSITION[
             ((Card.CARD_POSITION.index(self.position) + 1) % len(Card.CARD_POSITION))
         ]
         return (nextcard - self.position) % len_BOARD
 
     def getMovement(self):
-        """カードによる移動数を出力するメソッド"""
-
+        """カードによる移動数を出力するメソッド."""
         if self.card == "15":
             return 15
         elif self.card == "next card":
@@ -119,14 +112,15 @@ class Card:
 
 
 class Tile:
-    """バンカースのマスを表すクラス"""
+    """バンカースのマスを表すクラス."""
 
     def __init__(self, name="銀行", move_type="normal"):
+        """Init."""
         self.name = name
         self.move_type = move_type
 
     def getMove(self, card, position):
-        """移動に関わる特殊マスでの移動数を計算するメソッド
+        """移動に関わる特殊マスでの移動数を計算するメソッド.
 
         Args:
             card (Card): Cardクラス
@@ -135,7 +129,6 @@ class Tile:
         Returns:
             int: 移動に関わる特殊マスでの移動数
         """
-
         if self.move_type == "sairei":
             dice_num = dice()
             if dice_num % 2 == 1:
@@ -205,22 +198,26 @@ len_BOARD = len(BOARD)
 
 
 def where_board(count):
-    """総カウントから剰余算により現在いるマスを計算する。"""
-
+    """総カウントから剰余算により現在いるマスを計算する.
+    
+    >>> where_board(40)
+    0
+    """
     return count % len_BOARD
 
 
 class AnalyzeBankers:
-    """各マスの止まりやすさを計算するクラス"""
+    """各マスの止まりやすさを計算するクラス."""
 
     def __init__(self, max_count):
+        """Init."""
         self.max_count = max_count
         self.panel_counter = [0 for i in range(40)]
         self.count = 0
         self.card = Card()
 
     def stepEval(self, steps, count):
-        """1ターンの最終到達点を計算する再帰関数
+        """1ターンの最終到達点を計算する再帰関数.
 
         Args:
             steps (int): 最終到達点までに進んだマス目の数
@@ -230,7 +227,6 @@ class AnalyzeBankers:
         Returns:
             int: 最終到達点までに進んだマス目の数
         """
-
         if (count + steps) % len_BOARD == 18:
             if steps == 7:
                 return steps
@@ -244,8 +240,7 @@ class AnalyzeBankers:
             return steps + self.stepEval(next_steps, count)
 
     def analyze(self):
-        """1ターンで最終的にどこに止まったかを記録していくことで、止まりやすい家を算出する。"""
-
+        """1ターンで最終的にどこに止まったかを記録していくことで、止まりやすい家を算出する."""
         while self.count < self.max_count:
             dice_num = dice()
             steps = self.stepEval(dice_num, self.count)
