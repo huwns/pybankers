@@ -41,7 +41,7 @@ class Card:
     KOUN_POSITION: int = 21
 
     # この初期値設定はどういうこと？
-    def __init__(self, card: str ="normal", position: int = 2) -> None:
+    def __init__(self, card: str = "normal", position: int = 2) -> None:
         """Init."""
         self.cards: List[str] = Card.CARDS.copy()
         self.card: str = card
@@ -199,7 +199,7 @@ len_BOARD = len(BOARD)
 
 def where_board(count):
     """総カウントから剰余算により現在いるマスを計算する.
-    
+
     >>> where_board(40)
     0
     """
