@@ -1,6 +1,6 @@
 import unittest
 
-from bankers import Tile
+from pybankers import Tile
 
 
 class TestTile(unittest.TestCase):

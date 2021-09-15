@@ -1,7 +1,7 @@
 
 import unittest
 
-from bankers import Card
+from pybankers import Card
 
 
 class TestCard(unittest.TestCase):
