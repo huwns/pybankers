@@ -3,7 +3,7 @@ __pycache__/
 build/
 dist/
 *.egg-info/
-doc/build/
+/doc/build/
 .tox/
 /test-project/
 .coverage
@@ -11,4 +11,3 @@ doc/build/
 /doc/Makefile
 _static/
 _templates/
-htmlcov/
