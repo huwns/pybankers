@@ -1,8 +1,8 @@
-digraph "classes_PyBankers" {
+digraph "classes" {
 rankdir=BT
 charset="utf-8"
 "pybankers.pybankers.AnalyzeBankers" [color="black", fontcolor="black", label="{AnalyzeBankers|card\lcount : int\lmax_count\lpanel_counter\l|analyze()\lstepEval(steps, count)\l}", shape="record", style="solid"];
-"pybankers.pybankers.Card" [color="black", fontcolor="black", label="{Card|CARDS\lCARD_POSITION : list\lCHUOU_POSITION : int\lCORNER_POSITION : list\lKOUN_POSITION : int\lMOVE_CARDS : list\lNORMAL_CARDS\lSAIREI_POSITION : int\lTHEATRE_POSITION : int\lcard : str\lcards\lposition : int\l|drawCard()\lgetMovement()\lmoveBank()\lmoveChuou()\lmoveCorner()\lmoveKoun()\lmoveNextcard()\lmoveSairei()\lmoveTheatre()\l}", shape="record", style="solid"];
+"pybankers.pybankers.Card" [color="black", fontcolor="black", label="{Card|CARDS : List[str]\lCARD_POSITION : List[int]\lCHUOU_POSITION : int\lCORNER_POSITION : List[int]\lKOUN_POSITION : int\lMOVE_CARDS : List[str]\lNORMAL_CARDS : List[str]\lSAIREI_POSITION : int\lTHEATRE_POSITION : int\lcard : str\lcards : List[str]\lposition : int\l|drawCard(): \lgetMovement()\lmoveBank()\lmoveChuou()\lmoveCorner()\lmoveKoun()\lmoveNextcard()\lmoveSairei()\lmoveTheatre()\l}", shape="record", style="solid"];
 "pybankers.pybankers.Tile" [color="black", fontcolor="black", label="{Tile|move_type : str\lname : str\l|getMove(card, position)\l}", shape="record", style="solid"];
 "pybankers.pybankers.Card" -> "pybankers.pybankers.AnalyzeBankers" [arrowhead="diamond", arrowtail="none", fontcolor="green", label="card", style="solid"];
 }

@@ -1,4 +1,4 @@
-digraph "packages_PyBankers" {
+digraph "packages" {
 rankdir=BT
 charset="utf-8"
 "pybankers" [color="black", label="pybankers", shape="box", style="solid"];
