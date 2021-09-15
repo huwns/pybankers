@@ -11,7 +11,8 @@ Welcome to Analyze Bankers's documentation!
    :caption: Contents:
 
    main
-
+   modules
+   pybankers
 
 
 Indices and tables
