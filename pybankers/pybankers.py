@@ -1,9 +1,10 @@
 """ボードゲーム「バンカース」における各マスの止まりやすさを計算する."""
 
 import random
+from typing import List
+
 import matplotlib.pyplot as plt  # type:ignore
 
-from typing import List, Dict
 
 __all__ = ["AnalyzeBankers", "Card", "Tile"]
 
@@ -47,68 +48,70 @@ class Card:
         self.card: str = card
         self.position: int = position
 
-    def drawCard(self) -> None:
+    def draw_card(self) -> None:
         """カードを引く."""
         if len(self.cards) <= 0:
             self.cards = Card.CARDS.copy()
         self.card = self.cards.pop(random.randint(0, len(self.cards) - 1))
 
-    def moveCorner(self):
+    def move_corner(self):
         """角に移動するカードによる移動数を計算."""
         position = [self.position] + Card.CORNER_POSITION
         position.sort()
         corner = Card.CORNER_POSITION[
             ((position.index(self.position) - 1) % len(Card.CORNER_POSITION))
         ]
-        return -((self.position - corner) % len_BOARD)
+        return -((self.position - corner) % LEN_BOARD)
 
-    def moveBank(self):
+    def move_bank(self):
         """「銀行」へ行くカードの移動数を計算."""
-        return -self.position % len_BOARD
+        return -self.position % LEN_BOARD
 
-    def moveChuou(self):
+    def move_chuou(self):
         """「中央線」へ行くカードの移動数を計算."""
-        return (Card.CHUOU_POSITION - self.position) % len_BOARD
+        return (Card.CHUOU_POSITION - self.position) % LEN_BOARD
 
-    def moveTheatre(self):
+    def move_theatre(self):
         """「劇場」へ行くカードによる移動数を計算."""
-        return (Card.THEATRE_POSITION - self.position) % len_BOARD
+        return (Card.THEATRE_POSITION - self.position) % LEN_BOARD
 
-    def moveSairei(self):
+    def move_sairei(self):
         """「祭礼」へ行くカードによる移動数を計算."""
-        return (Card.SAIREI_POSITION - self.position) % len_BOARD
+        return (Card.SAIREI_POSITION - self.position) % LEN_BOARD
 
-    def moveKoun(self):
+    def move_koun(self):
         """「幸運」へ行くカードによる移動数を計算."""
-        return (Card.KOUN_POSITION - self.position) % len_BOARD
+        return (Card.KOUN_POSITION - self.position) % LEN_BOARD
 
-    def moveNextcard(self):
+    def move_nextcard(self):
         """「次のカード」へ行くカードによる移動数を計算."""
         nextcard = Card.CARD_POSITION[
-            ((Card.CARD_POSITION.index(self.position) + 1) % len(Card.CARD_POSITION))
+            ((Card.CARD_POSITION.index(self.position) + 1)
+                % len(Card.CARD_POSITION))
         ]
-        return (nextcard - self.position) % len_BOARD
+        return (nextcard - self.position) % LEN_BOARD
 
-    def getMovement(self):
+    def get_movement(self):
         """カードによる移動数を出力するメソッド."""
+        result = 0
         if self.card == "15":
-            return 15
+            result = 15
         elif self.card == "next card":
-            return self.moveNextcard()
+            result = self.move_nextcard()
         elif self.card == "koun":
-            return self.moveKoun()
+            result = self.move_koun()
         elif self.card == "sairei":
-            return self.moveSairei()
+            result = self.move_sairei()
         elif self.card == "bank":
-            return self.moveBank()
+            result = self.move_bank()
         elif self.card == "chuou":
-            return self.moveChuou()
+            result = self.move_chuou()
         elif self.card == "theatre":
-            return self.moveTheatre()
+            result = self.move_theatre()
         elif self.card == "back to corner":
-            return self.moveCorner()
-        else:
-            return 0
+            result = self.move_corner()
+
+        return result
 
 
 class Tile:
@@ -119,7 +122,7 @@ class Tile:
         self.name = name
         self.move_type = move_type
 
-    def getMove(self, card, position):
+    def get_move(self, card, position):
         """移動に関わる特殊マスでの移動数を計算するメソッド.
 
         Args:
@@ -136,8 +139,8 @@ class Tile:
             return dice_num
         elif self.move_type == "card":
             card.position = position
-            card.drawCard()
-            return card.getMovement()
+            card.draw_card()
+            return card.get_movement()
         elif self.move_type == "redice":
             return dice()
         elif self.move_type == "boat":
@@ -194,7 +197,7 @@ BOARD = [
     Tile("日本橋"),
 ]
 
-len_BOARD = len(BOARD)
+LEN_BOARD = len(BOARD)
 
 
 def where_board(count):
@@ -203,7 +206,7 @@ def where_board(count):
     >>> where_board(40)
     0
     """
-    return count % len_BOARD
+    return count % LEN_BOARD
 
 
 class AnalyzeBankers:
@@ -216,7 +219,7 @@ class AnalyzeBankers:
         self.count = 0
         self.card = Card()
 
-    def stepEval(self, steps, count):
+    def step_eval(self, steps, count):
         """1ターンの最終到達点を計算する再帰関数.
 
         Args:
@@ -227,39 +230,54 @@ class AnalyzeBankers:
         Returns:
             int: 最終到達点までに進んだマス目の数
         """
-        if (count + steps) % len_BOARD == 18:
+        if (count + steps) % LEN_BOARD == 18:
             if steps == 7:
                 return steps
         if steps == 0:
             return 0
-        else:
-            count += steps
-            next_steps = BOARD[where_board(count)].getMove(
-                self.card, where_board(count)
-            )
-            return steps + self.stepEval(next_steps, count)
+
+        count += steps
+        next_steps = BOARD[where_board(count)].get_move(
+            self.card, where_board(count)
+        )
+        return steps + self.step_eval(next_steps, count)
 
     def analyze(self):
         """1ターンで最終的にどこに止まったかを記録していくことで、止まりやすい家を算出する."""
         while self.count < self.max_count:
             dice_num = dice()
-            steps = self.stepEval(dice_num, self.count)
+            steps = self.step_eval(dice_num, self.count)
             self.count += steps
             self.panel_counter[where_board(self.count)] += 1
         return self.panel_counter
 
 
-def main(max_count):
-    ab = AnalyzeBankers(max_count)
-    panel_counter = ab.analyze()
+def main():
+    """Main function."""
+    import argparse
+    parser = argparse.ArgumentParser(
+        description=r"""
+PyBankers - The board game Bankers analyzer.
+__________        __________                __                        
+\______   \___.__.\______   \_____    ____ |  | __ ___________  ______
+|     ___<   |  | |    |  _/\__  \  /    \|  |/ // __ \_  __ \/  ___/
+|    |    \___  | |    |   \ / __ \|   |  \    <\  ___/|  | \/\___ \ 
+|____|    / ____| |______  /(____  /___|  /__|_ \\___  >__|  /____  >
+        \/             \/      \/     \/     \/    \/           \/ """,
+        formatter_class=argparse.RawTextHelpFormatter,
+    )
+    parser.add_argument("max_count")
+    args = parser.parse_args()
+    analyze_bankers = AnalyzeBankers(args.max_count)
+    panel_counter = analyze_bankers.analyze()
     print("Result:")
-    for i in range(len_BOARD):
+    for i in range(LEN_BOARD):
         print(BOARD[i].name, panel_counter[i])
-    fig = plt.figure()
-    xaxis = [i for i in range(len_BOARD)]
+    plt.figure()
+    xaxis = list(range(LEN_BOARD))
     plt.bar(xaxis, panel_counter)
     plt.show()
 
 
 if __name__ == "__main__":
-    main(1000)
+    main()
