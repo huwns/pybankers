@@ -24,11 +24,18 @@ PyBankers is a analysis toolkit for the board game 'Bankers' written in Python.
 
 Installation
 ------------
-install by pip::
+You can install by pip::
 
+    pip install pybankers
+
+
+Also you can install by setup.py::
+
+    git clone https://github.com/huwns/pybankers.git
+    cd pybankers
     python setup.py install
 
 
 Documentation
 -------------
-The documentation can be found in the doc folder.
+Documentation is available on `ReadTheDocs <https://pybankers.readthedocs.io>`_.
