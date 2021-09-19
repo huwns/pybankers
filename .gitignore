@@ -3,11 +3,11 @@ __pycache__/
 build/
 dist/
 *.egg-info/
-/doc/build/
 .tox/
-/test-project/
 .coverage
 /doc/make.bat
 /doc/Makefile
 _static/
 _templates/
+.mypy_cache/
+Dockerfile
